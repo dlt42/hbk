@@ -1,6 +1,6 @@
 import { DetailsContent } from 'ui/components/Details';
 
-import { callApi } from '../support';
+import { callApi } from '../support/apiHandler';
 import { getConfig } from '../support/config';
 import { Breed, Breeds, breedsSchema } from './breeds.types';
 
