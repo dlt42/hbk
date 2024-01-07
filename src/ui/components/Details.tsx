@@ -58,7 +58,7 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
     <summary className='cursor-pointer text-center text-sm font-bold '>
       {label}
     </summary>
-    <div className='flex flex-col flex-wrap gap-3 border-t-black border-solid border-t'>
+    <div className='flex flex-col flex-wrap gap-3 border-t border-solid border-t-black'>
       <section className='grid grid-cols-[min-content_1fr] text-xs'>
         <DetailsBlock details={content.info} id={id} />
         <div className='text-nowrap p-1 text-right font-bold capitalize'>
@@ -70,7 +70,7 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
       </section>
       <div className='flex w-full flex-wrap gap-3'>
         <section className=' flex-auto'>
-          <h4 className='text-sm font-bold text-center border-b-black border-solid border-b'>
+          <h4 className='border-b border-solid border-b-black text-center text-sm font-bold'>
             Stats
           </h4>
           <div className='grid  grid-cols-[min-content_1fr_min-content_1fr] text-xs'>
@@ -78,7 +78,7 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
           </div>
         </section>
         <section className=' flex-auto'>
-          <h4 className='text-sm font-bold  text-center border-b-black border-solid border-b'>
+          <h4 className='border-b border-solid  border-b-black text-center text-sm font-bold'>
             Attributes
           </h4>
           <div className='grid  grid-cols-[min-content_1fr_min-content_1fr] text-xs'>
