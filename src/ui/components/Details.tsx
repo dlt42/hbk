@@ -58,8 +58,8 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
     <summary className='cursor-pointer text-center text-sm font-bold'>
       {label}
     </summary>
-    <div>
-      <section className='mb-2 grid grid-cols-[min-content_1fr] text-xs'>
+    <div className='flex flex-col flex-wrap gap-3'>
+      <section className='grid grid-cols-[min-content_1fr] text-xs'>
         <DetailsBlock details={content.info} id={id} />
         <div className='text-nowrap p-1 text-right font-bold capitalize'>
           Links
@@ -68,7 +68,7 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
           <LinksBlock links={content.links} />
         </div>
       </section>
-      <div className='flex w-full flex-wrap'>
+      <div className='flex w-full flex-wrap gap-3'>
         <section className=' flex-auto'>
           <h4 className='text-sm font-bold'>Stats</h4>
           <div className='grid  grid-cols-[min-content_1fr_min-content_1fr] text-xs'>
