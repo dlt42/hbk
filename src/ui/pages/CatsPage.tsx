@@ -14,7 +14,7 @@ const CatsPage: FC = (): JSX.Element => {
   return (
     <>
       <Header title='Cats' />
-      <div className='pt-20'>
+      <div className='overflow-y-scroll pt-7'>
         <CatList cats={cats} />
       </div>
     </>

@@ -50,7 +50,7 @@ const BreedsPage: FC = (): JSX.Element => {
   return (
     <>
       <Header title='Breeds' />
-      <div className='pt-20'>
+      <div className='overflow-y-scroll pt-7'>
         <Filter
           onTermChange={onTermChange}
           placeholder='Filter breeds...'

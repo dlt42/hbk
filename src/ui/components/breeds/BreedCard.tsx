@@ -15,7 +15,7 @@ const BreedCard: FC<BreedCardProps> = ({ breed }): JSX.Element => {
       <section
         className={`flex w-full flex-grow flex-row flex-nowrap items-start  gap-3 `}
       >
-        <span className='flex flex-col'>
+        <span className='flex flex-grow flex-col'>
           <h1 className='w-full text-left text-base font-bold'>{breed.name}</h1>
           <div className='text-left text-base'>{breed.description}</div>
         </span>

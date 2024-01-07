@@ -24,10 +24,8 @@ const AppComponent = () => {
   };
   return (
     <HashRouter>
-      <div className='min-w-[424px] text-center'>
-        <div className=' flex max-h-screen flex-col'>
-          <NavProvider navData={navData} />
-        </div>
+      <div className='flex h-full max-h-screen  w-full min-w-96 max-w-full flex-col overflow-y-hidden'>
+        <NavProvider navData={navData} />
       </div>
     </HashRouter>
   );

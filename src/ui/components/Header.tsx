@@ -9,7 +9,7 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({ title }): JSX.Element => {
   document.title = title;
   return (
-    <header className='fixed flex h-16 w-full items-center justify-between bg-[#fbefe7] pl-3 pr-3 shadow-[0_2px_10px_0_rgba(0,0,0,0.1)]'>
+    <header className='z-10 flex w-full items-center justify-between bg-[#fbefe7] p-3 shadow-[0_2px_10px_0_rgba(0,0,0,0.5)]'>
       <div className='text-4xl font-bold'>{title}</div>
       <Nav />
     </header>
