@@ -1,0 +1,9 @@
+{
+  "short_name": "React Technical Test",
+  "name": "HBK - React Technical Test",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
