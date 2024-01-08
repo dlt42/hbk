@@ -9,7 +9,7 @@ type CatListProps = {
 
 const CatList: FC<CatListProps> = ({ cats }): JSX.Element => {
   return (
-    <div className='flex flex-wrap justify-center gap-2 p-2'>
+    <div className='flex flex-wrap justify-center gap-2 p-2 pt-4'>
       {cats === null ? (
         <div>No cats</div>
       ) : (

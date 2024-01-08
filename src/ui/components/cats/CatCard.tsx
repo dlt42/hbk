@@ -11,10 +11,10 @@ export const CatCard: FC<CatProps> = ({ cat }): JSX.Element => {
   return (
     <article
       id={id}
-      className={`flex cursor-pointer flex-row flex-nowrap items-start gap-2 rounded-[1rem] border-[.1rem] border-solid border-slate-200 bg-white p-2`}
+      className={`flex cursor-pointer flex-row flex-nowrap items-start gap-2 rounded-[1rem] border-[.1rem] border-solid border-slate-400 bg-white p-2`}
     >
       <img
-        className=' h-64 w-64 rounded-[.6rem] border-[.1rem] border-solid border-slate-200 object-cover'
+        className=' h-64 w-64 rounded-[.6rem] border-[.1rem] border-solid border-slate-500 object-cover'
         src={url}
       />
     </article>

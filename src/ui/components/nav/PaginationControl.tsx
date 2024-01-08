@@ -9,6 +9,27 @@ type PaginationControlsProps = {
   setPage: (pageNumber: number) => void;
 };
 
+type PaginationButtonSVGProps = {
+  path: string;
+};
+
+const PaginationButtonSVG: FC<PaginationButtonSVGProps> = ({ path }) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox='0 0 24 24'
+      strokeWidth='1.5'
+      stroke='currentColor'
+      className='h-4 w-4'
+    >
+      <path strokeLinecap='round' strokeLinejoin='round' d={path} />
+    </svg>
+  );
+};
+
+// Button SVG paths from https://heroicons.com/
+
 const PaginationControls: FC<PaginationControlsProps> = ({
   limit,
   page,
@@ -37,20 +58,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           h-4
           w-4
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='h-4 w-4'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5'
-            />
-          </svg>
+          <PaginationButtonSVG path='m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5' />
         </PaginationButton>
         <PaginationButton
           setPage={setPage}
@@ -60,20 +68,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           total={totalPages}
           type='nav'
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='h-4 w-4'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M15.75 19.5 8.25 12l7.5-7.5'
-            />
-          </svg>
+          <PaginationButtonSVG path='M15.75 19.5 8.25 12l7.5-7.5' />
         </PaginationButton>
         <span className=' text-center text-[.8rem] '>
           {startIndex} to {endIndex} of {total}
@@ -86,20 +81,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           total={totalPages}
           type='nav'
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='h-4 w-4'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='m8.25 4.5 7.5 7.5-7.5 7.5'
-            />
-          </svg>
+          <PaginationButtonSVG path='m8.25 4.5 7.5 7.5-7.5 7.5' />
         </PaginationButton>
         <PaginationButton
           setPage={setPage}
@@ -109,20 +91,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           total={totalPages}
           type='nav'
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            strokeWidth='1.5'
-            stroke='currentColor'
-            className='h-4 w-4'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5'
-            />
-          </svg>
+          <PaginationButtonSVG path='m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5' />
         </PaginationButton>
       </ul>
       <ul className=' hidden flex-row justify-center gap-2 sm:flex'>
