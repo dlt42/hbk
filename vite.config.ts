@@ -11,8 +11,11 @@ export default defineConfig(({ mode }) => {
       'process.env.REACT_APP_API_BASE_URL': JSON.stringify(
         env.REACT_APP_API_BASE_URL
       ),
-      'process.env.REACT_APP_API_GET_BREEDS_ENDPOINT': JSON.stringify(
-        env.REACT_APP_API_GET_BREEDS_ENDPOINT
+      'process.env.REACT_APP_API_BREEDS_PATH': JSON.stringify(
+        env.REACT_APP_API_BREEDS_PATH
+      ),
+      'process.env.REACT_APP_API_CATS_SEARCH_PATH': JSON.stringify(
+        env.REACT_APP_API_CATS_SEARCH_PATH
       ),
     },
     build: {

@@ -17,10 +17,10 @@ const convertZodError = (error: ZodError) =>
     (i) => `${i.path.length ? `${i.path.join('.')} -> ` : ''}${i.message}`
   );
 
-const processApiRequestError = <T extends ResponseDataType>(
+const processApiRequestError = <T extends ResponseDataType, H>(
   error: unknown,
   urlDetails: URLDetails
-): ApiResponse<T> => {
+): ApiResponse<T, H> => {
   return Result.err({
     type: 'REQUEST',
     error: getErrorMessage(error),

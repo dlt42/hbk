@@ -1,19 +1,22 @@
 import React, { FC } from 'react';
 
-import { Cat } from '../../../domain/cats';
+import { Cat } from '../../../domain/cats.types';
 
 type CatProps = {
   cat: Cat;
 };
 
 export const CatCard: FC<CatProps> = ({ cat }): JSX.Element => {
-  const { id } = cat;
+  const { id, url } = cat;
   return (
     <article
       id={id}
-      className={` m-2 flex w-full flex-grow cursor-pointer flex-row flex-nowrap items-start gap-3 rounded-[.5rem] border-[.1rem] border-solid border-slate-800 bg-white p-4`}
+      className={`flex cursor-pointer flex-row flex-nowrap items-start gap-3 rounded-[1rem] border-[.1rem] border-solid border-slate-200 bg-white p-2`}
     >
-      <span></span>
+      <img
+        className=' h-64 w-64 rounded-[.6rem] border-[.1rem] border-solid border-slate-200 object-cover'
+        src={url}
+      />
     </article>
   );
 };

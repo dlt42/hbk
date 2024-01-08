@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 
-import { Cat } from '../../../domain/cats';
+import { Cat, Cats } from '../../../domain/cats.types';
 import { CatCard } from './CatCard';
 
-export type CatListProps = {
-  cats: Cat[] | null;
+type CatListProps = {
+  cats: Cats;
 };
 
-export const CatList: FC<CatListProps> = ({ cats }): JSX.Element => {
+const CatList: FC<CatListProps> = ({ cats }): JSX.Element => {
   return (
-    <div className='flex flex-col items-center justify-between p-2'>
+    <div className='flex flex-wrap justify-center gap-3 p-5'>
       {cats === null ? (
         <div>No cats</div>
       ) : (
@@ -20,3 +20,5 @@ export const CatList: FC<CatListProps> = ({ cats }): JSX.Element => {
     </div>
   );
 };
+
+export default CatList;

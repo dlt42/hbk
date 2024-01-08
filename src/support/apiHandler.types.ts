@@ -1,11 +1,11 @@
 import { Result } from 'true-myth';
 import { Schema } from 'zod';
 
-import { ApiError } from './error.types';
+import { ApiErrorResponse } from './error.types';
 
 type URLDetails = {
   baseURL: string;
-  endpoint: string;
+  path: string;
   paramMap?: Record<string, string | number>;
   id?: string;
 };
@@ -18,14 +18,14 @@ type ResponseData<T extends ResponseDataType> = T;
 
 type ResponseSchema<T extends ResponseDataType> = Schema<ResponseData<T>>;
 
-type ValidationResult<T extends ResponseDataType> = ApiResponse<T>;
-
 type ApiRequest<
   T extends ResponseDataType,
   P extends PayloadDataType | void,
+  H,
 > = {
   urlDetails: URLDetails;
-  headers: Record<string, string>;
+  requestHeaders: Record<string, string>;
+  requiredResponseHeaders?: (keyof H)[];
 } & (P extends PayloadDataType
   ? {
       superType: 'payload';
@@ -39,18 +39,23 @@ type ApiRequest<
       schema: ResponseSchema<T>;
     });
 
-type ApiResponse<T extends ResponseDataType> = Result<
-  ResponseData<T>,
-  ApiError
+type ApiSuccessResponse<T extends ResponseDataType, H> = {
+  data: ResponseData<T>;
+  headers: Partial<H>;
+};
+
+type ApiResponse<T extends ResponseDataType, H> = Result<
+  ApiSuccessResponse<T, H>,
+  ApiErrorResponse
 >;
 
 export type {
   ApiRequest,
   ApiResponse,
+  ApiSuccessResponse,
   PayloadDataType,
   ResponseData,
   ResponseDataType,
   ResponseSchema,
   URLDetails,
-  ValidationResult,
 };

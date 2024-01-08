@@ -8,10 +8,10 @@ const config = getConfig();
 
 export const getBreeds = async () => {
   const baseURL = config.baseUrl;
-  const endpoint = config.getBreedsEndpoint;
+  const path = config.breedsPath;
 
-  const result = await callApi<Breeds, void>({
-    headers: {
+  const result = await callApi<Breeds, void, {}>({
+    requestHeaders: {
       'x-api-key': config.xApiKey,
     },
     superType: 'nopayload',
@@ -19,7 +19,7 @@ export const getBreeds = async () => {
     schema: breedsSchema,
     urlDetails: {
       baseURL,
-      endpoint,
+      path,
       paramMap: {},
     },
   });

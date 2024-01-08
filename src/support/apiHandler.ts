@@ -3,6 +3,7 @@ import { Result } from 'true-myth';
 import {
   ApiRequest,
   ApiResponse,
+  ApiSuccessResponse,
   PayloadDataType,
   ResponseData,
   ResponseDataType,
@@ -10,16 +11,16 @@ import {
   URLDetails,
 } from './apiHandler.types';
 import { convertZodError, processApiRequestError } from './error';
-import { ApiError } from './error.types';
+import { ApiErrorResponse } from './error.types';
 
 const constructApiURL = ({
   baseURL,
-  endpoint,
+  path,
   id,
   paramMap,
 }: URLDetails): string => {
   const url = new URL(baseURL);
-  url.pathname += `${endpoint}`;
+  url.pathname += `${path}`;
   if (id) {
     url.pathname += `/${id}`;
   }
@@ -34,14 +35,18 @@ const constructApiURL = ({
   return url.toString();
 };
 
-const validateResponse = <T extends ResponseDataType>(
+const validateResponse = <T extends ResponseDataType, H>(
   schema: ResponseSchema<T>,
   response: ResponseData<T>,
-  urlDetails: URLDetails
-): Result<ResponseData<T>, ApiError> => {
+  urlDetails: URLDetails,
+  responseHeadersData: H
+): Result<ApiSuccessResponse<T, H>, ApiErrorResponse> => {
   const parseResult = schema.safeParse(response);
   return parseResult.success
-    ? Result.ok(parseResult.data)
+    ? Result.ok({
+        data: parseResult.data,
+        headers: responseHeadersData,
+      })
     : Result.err({
         type: 'VALIDATION',
         error: 'Zod Validation failure',
@@ -51,18 +56,41 @@ const validateResponse = <T extends ResponseDataType>(
       });
 };
 
+const getResponseHeadersData = <H>(
+  response: Response,
+  requiredHeaders: (keyof H)[] | undefined
+): Partial<H> => {
+  const responseHeadersData: Partial<H> = {};
+  if (requiredHeaders && responseHeadersData) {
+    requiredHeaders.forEach(
+      (requiredHeader) =>
+        (responseHeadersData[requiredHeader] = Object(response.headers).get(
+          requiredHeader.toString()
+        ))
+    );
+  }
+  return responseHeadersData;
+};
+
 const callApi = async <
   T extends ResponseDataType,
   P extends void | PayloadDataType,
+  H,
 >(
-  params: ApiRequest<T, P>
-): Promise<ApiResponse<T>> => {
-  const { urlDetails, superType, type, headers: headersParam } = params;
+  params: ApiRequest<T, P, H>
+): Promise<ApiResponse<T, H>> => {
+  const {
+    urlDetails,
+    superType,
+    type,
+    requestHeaders,
+    requiredResponseHeaders,
+  } = params;
   try {
     const headers = new Headers(
       {
         'Content-Type': 'application/json',
-      } && headersParam
+      } && requestHeaders
     );
 
     const redirect: RequestRedirect = 'follow';
@@ -79,8 +107,12 @@ const callApi = async <
       case 'nopayload': {
         const { schema } = params;
         const response = await fetch(url, requestOptions);
+        const responseHeadersData = getResponseHeadersData(
+          response,
+          requiredResponseHeaders
+        );
         const data = await response.json();
-        return validateResponse(schema, data, urlDetails);
+        return validateResponse(schema, data, urlDetails, responseHeadersData);
       }
       case 'payload': {
         const { payload } = params;
@@ -88,8 +120,15 @@ const callApi = async <
           url,
           requestOptions && { body: JSON.stringify(payload) }
         );
+        const responseHeadersData = getResponseHeadersData(
+          response,
+          requiredResponseHeaders
+        );
         const data = await response.json();
-        return Result.ok(data);
+        return Result.ok({
+          data,
+          headers: responseHeadersData,
+        });
       }
     }
   } catch (error) {

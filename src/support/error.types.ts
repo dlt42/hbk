@@ -21,6 +21,6 @@ type ValidationError = ApiErrorBase & {
   response: ResponseData<ResponseDataType>;
 };
 
-type ApiError = RequestError | AxiosError | ValidationError;
+type ApiErrorResponse = RequestError | AxiosError | ValidationError;
 
-export type { ApiError };
+export type { ApiErrorResponse };
