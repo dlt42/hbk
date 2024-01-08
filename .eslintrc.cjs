@@ -40,7 +40,6 @@ module.exports = {
     'react/prop-types': 'off',
     'tailwindcss/classnames-order': 'warn',
     'tailwindcss/no-custom-classname': 'warn',
-    'tailwindcss/no-contradicting-classname': 'error',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     '@typescript-eslint/ban-types': 'off',

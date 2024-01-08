@@ -2,10 +2,10 @@ import React from 'react';
 import { FC, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import NavContext from '../../context/nav/navContext';
+import NavContext from '../../context/navLinkContext';
 
 const Nav: FC = (): JSX.Element => {
-  const { links } = useContext(NavContext);
+  const links = useContext(NavContext);
   const location = useLocation();
   return (
     <>

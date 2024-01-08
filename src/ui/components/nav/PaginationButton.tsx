@@ -23,15 +23,17 @@ const PaginationButton: FC<PaginationButtonProps> = ({
   return (
     <li
       className={` ${
-        enabled ? 'cursor-pointer bg-white hover:border-blue-600  ' : 'cursor-default bg-gray-300'
+        enabled
+          ? 'cursor-pointer bg-white hover:border-blue-600  '
+          : 'cursor-default bg-gray-300'
       } ${
-        type === 'nav' ? 'w-8 pt-[0.2rem] pb-[0.2rem]' : ' text-xs text-[.8rem]'
+        type === 'nav' ? 'w-8 pb-[0.2rem] pt-[0.2rem]' : ' text-[.8rem] text-xs'
       } block rounded-[.2rem] border-[.1rem] border-solid border-slate-800  text-center `}
     >
       <a
-        className={`${type === 'nav' ? 'flex justify-center' : 'pl-[0.2rem] pr-[0.2rem]'} ${
-          enabled ? 'text-black' : 'text-gray-800'
-        } block h-full w-full`}
+        className={`${
+          type === 'nav' ? 'flex justify-center' : 'pl-[0.2rem] pr-[0.2rem]'
+        } ${enabled ? 'text-black' : 'text-gray-800'} block h-full w-full`}
         rel={rel}
         onClick={() => {
           if (enabled) setPage(page);

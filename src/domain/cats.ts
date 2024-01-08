@@ -1,4 +1,4 @@
-import { callApi } from '../support/apiHandler';
+import { callApi } from '../api/apiHandler';
 import { getConfig } from '../support/config';
 import { Cats, catsSchema } from './cats.types';
 

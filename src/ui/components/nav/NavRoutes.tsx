@@ -1,19 +1,20 @@
-import React, { FC, useContext } from 'react';
+import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import NavContext from '../../context/nav/navContext';
-
-export type NavRouteProps = {
+export type NavRoute = {
   path: string;
   element: JSX.Element;
 };
 
-const NavRoutes: FC = (): JSX.Element => {
-  const { routes } = useContext(NavContext);
+type NavRoutesProps = {
+  routes: NavRoute[];
+};
+
+const NavRoutes: FC<NavRoutesProps> = ({ routes }): JSX.Element => {
   return (
     <Routes>
       {routes.map(
-        ({ path, element }: NavRouteProps, i: number): JSX.Element => (
+        ({ path, element }: NavRoute, i: number): JSX.Element => (
           <Route key={`${i}_${path}`} path={path} element={element} />
         )
       )}

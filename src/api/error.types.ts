@@ -10,17 +10,11 @@ type RequestError = ApiErrorBase & {
   type: 'REQUEST';
 };
 
-type AxiosError = ApiErrorBase & {
-  type: 'AXIOS';
-  code: string | undefined;
-  status: number;
-};
-
 type ValidationError = ApiErrorBase & {
   type: 'VALIDATION';
   response: ResponseData<ResponseDataType>;
 };
 
-type ApiErrorResponse = RequestError | AxiosError | ValidationError;
+type ApiErrorResponse = RequestError | ValidationError;
 
 export type { ApiErrorResponse };
