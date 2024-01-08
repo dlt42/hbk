@@ -4,14 +4,15 @@ import Nav from './nav/Nav';
 
 type HeaderProps = {
   title: string;
+  children?: JSX.Element;
 };
 
-const Header: FC<HeaderProps> = ({ title }): JSX.Element => {
+const Header: FC<HeaderProps> = ({ title, children }): JSX.Element => {
   document.title = title;
   return (
-    <header className='z-10 flex w-full items-center justify-between bg-[#fbefe7] p-3 shadow-[0_2px_10px_0_rgba(0,0,0,0.5)]'>
-      <div className='text-4xl font-bold'>{title}</div>
+    <header className='z-10 flex w-full flex-row flex-wrap items-start justify-between gap-2 bg-[#fbefe7] p-2 shadow-[0_2px_10px_0_rgba(0,0,0,0.5)]'>
       <Nav />
+      {children}
     </header>
   );
 };

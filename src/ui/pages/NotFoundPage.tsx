@@ -8,8 +8,8 @@ const NotFoundPage: FC = (): JSX.Element => (
       <Header title='Not Found' />
     </header>
     <main>
-      <section>
-        <h3>404: Page Not Found!</h3>
+      <section className='p-3 text-center'>
+        <span>404: Page Not Found!</span>
       </section>
     </main>
   </>

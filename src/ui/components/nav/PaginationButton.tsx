@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 type PaginationButtonProps = {
-  label: string;
+  children: JSX.Element;
   page: number;
   current: number;
   total: number;
@@ -11,7 +11,7 @@ type PaginationButtonProps = {
 };
 
 const PaginationButton: FC<PaginationButtonProps> = ({
-  label,
+  children,
   page,
   current,
   total,
@@ -23,13 +23,13 @@ const PaginationButton: FC<PaginationButtonProps> = ({
   return (
     <li
       className={` ${
-        enabled ? 'cursor-pointer bg-white' : 'cursor-default bg-gray-300'
+        enabled ? 'cursor-pointer bg-white hover:border-blue-600  ' : 'cursor-default bg-gray-300'
       } ${
-        type === 'nav' ? 'w-20 ' : ' text-xs text-[.8rem]'
-      } block rounded-[.2rem] border-[.1rem] border-solid border-slate-800 bg-white text-center `}
+        type === 'nav' ? 'w-8 pt-[0.2rem] pb-[0.2rem]' : ' text-xs text-[.8rem]'
+      } block rounded-[.2rem] border-[.1rem] border-solid border-slate-800  text-center `}
     >
       <a
-        className={`${type === 'nav' ? 'pl-[0.4rem] pr-[0.4rem]' : 'pl-[0.2rem] pr-[0.2rem]'} ${
+        className={`${type === 'nav' ? 'flex justify-center' : 'pl-[0.2rem] pr-[0.2rem]'} ${
           enabled ? 'text-black' : 'text-gray-800'
         } block h-full w-full`}
         rel={rel}
@@ -38,7 +38,7 @@ const PaginationButton: FC<PaginationButtonProps> = ({
           return false;
         }}
       >
-        {label}
+        {children}
       </a>
     </li>
   );

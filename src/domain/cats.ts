@@ -9,6 +9,7 @@ export type CatSearchParams = {
   page: number;
   size: 'thumb' | 'small' | 'med' | 'full';
   order: 'ASC' | 'DESC';
+  breed_ids: string[] | undefined;
 };
 
 type PaginationResponseHeaders = {

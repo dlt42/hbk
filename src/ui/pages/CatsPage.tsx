@@ -2,6 +2,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 
 import { CatSearchParams, getCats } from '../../domain/cats';
 import { Cats } from '../../domain/cats.types';
+import BreedFilter, { ALL_BREEDS } from '../components/cats/BreedFilter';
 import CatList from '../components/cats/CatList';
 import Header from '../components/Header';
 import PaginationControls from '../components/nav/PaginationControl';
@@ -15,6 +16,7 @@ const CatsPage: FC = (): JSX.Element => {
     order: 'ASC',
     page: 0,
     size: 'small',
+    breed_ids: undefined,
   });
   const [cats, setCats] = useState<Cats>([] as Cats);
 
@@ -23,6 +25,17 @@ const CatsPage: FC = (): JSX.Element => {
       setCatSearchParams({
         ...catSearchParams,
         page,
+      });
+    },
+    [catSearchParams]
+  );
+
+  const setFilter = useCallback(
+    (breed_id: string) => {
+      setCatSearchParams({
+        ...catSearchParams,
+        breed_ids: breed_id === ALL_BREEDS ? undefined : [breed_id],
+        page: 0,
       });
     },
     [catSearchParams]
@@ -52,15 +65,24 @@ const CatsPage: FC = (): JSX.Element => {
 
   return (
     <>
-      <Header title='Cats' />
-      <div className='m-3 flex flex-col items-center justify-around gap-3'>
-        <PaginationControls
-          limit={limit}
-          page={page}
-          total={total}
-          setPage={setPage}
-        />
-      </div>
+      <Header title='Cats'>
+        <div className='flex flex-row flex-wrap items-start justify-around gap-2 rounded-[.2rem] border-[.1rem] border-solid border-slate-800 bg-gray-200 p-[.3rem]'>
+          <BreedFilter
+            setFilter={setFilter}
+            value={
+              catSearchParams.breed_ids === undefined
+                ? ALL_BREEDS
+                : catSearchParams.breed_ids[0]
+            }
+          />
+          <PaginationControls
+            limit={limit}
+            page={page}
+            total={total}
+            setPage={setPage}
+          />
+        </div>
+      </Header>
       <div className='overflow-y-scroll'>
         <CatList cats={cats} />
       </div>

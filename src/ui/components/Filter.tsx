@@ -1,6 +1,3 @@
-// import { TheCatAPI } from '@thatapicompany/thecatapi';
-// const theCatAPI = new TheCatAPI(config.xApiKey);
-
 import React, { useEffect, useState } from 'react';
 
 const Filter = ({
@@ -16,17 +13,15 @@ const Filter = ({
     onTermChange(term);
   }, [term, onTermChange]);
   return (
-    <div className='flex items-center justify-center align-middle'>
-      <input
-        className='m-1 border-[.1rem] border-solid border-gray-800 p-1'
-        placeholder={placeholder}
-        type='text'
-        value={term}
-        onChange={(e) => {
-          setTerm(e.target.value);
-        }}
-      />
-    </div>
+    <input
+      className='rounded-[.2rem] border-[.1rem] border-solid border-slate-800 pl-[.3rem]'
+      placeholder={placeholder}
+      type='text'
+      value={term}
+      onChange={(e) => {
+        setTerm(e.target.value);
+      }}
+    />
   );
 };
 

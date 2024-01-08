@@ -10,10 +10,10 @@ type BreedCardProps = {
 const BreedCard: FC<BreedCardProps> = ({ breed }): JSX.Element => {
   return (
     <article
-      className={`m-2 flex w-full flex-grow flex-col flex-nowrap items-start  gap-3 rounded-[.5rem] border-[.1rem] border-solid border-slate-800 bg-white p-4`}
+      className={`m-2 flex w-full flex-grow flex-col flex-nowrap items-start  gap-2 rounded-[.5rem] border-[.1rem] border-solid border-slate-800 bg-white p-4`}
     >
       <section
-        className={`flex w-full flex-grow flex-row flex-nowrap items-start  gap-3 `}
+        className={`flex w-full flex-grow flex-row flex-nowrap items-start  gap-2 `}
       >
         <span className='flex flex-grow flex-col'>
           <h1 className='w-full text-left text-base font-bold'>{breed.name}</h1>

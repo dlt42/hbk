@@ -6,7 +6,7 @@ import { ApiErrorResponse } from './error.types';
 type URLDetails = {
   baseURL: string;
   path: string;
-  paramMap?: Record<string, string | number>;
+  paramMap?: Record<string, string | number | string[] | undefined>;
   id?: string;
 };
 

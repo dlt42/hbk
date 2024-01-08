@@ -49,12 +49,13 @@ const BreedsPage: FC = (): JSX.Element => {
   );
   return (
     <>
-      <Header title='Breeds' />
-      <div className='overflow-y-scroll pt-7'>
+      <Header title='Breeds'>
         <Filter
           onTermChange={onTermChange}
           placeholder='Filter breeds...'
         ></Filter>
+      </Header>
+      <div className='flex-grow overflow-y-scroll'>
         <BreedList breeds={breeds}></BreedList>
       </div>
     </>

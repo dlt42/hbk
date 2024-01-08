@@ -9,7 +9,7 @@ type BreedListProps = {
 
 const BreedList: FC<BreedListProps> = ({ breeds }): JSX.Element => {
   return (
-    <div className='flex flex-col items-center justify-center p-5 align-middle'>
+    <div className='flex flex-col items-center justify-center p-2 align-middle'>
       {breeds === null ? (
         <div>No breed data loaded</div>
       ) : (

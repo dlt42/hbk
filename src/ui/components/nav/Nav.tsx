@@ -9,7 +9,7 @@ const Nav: FC = (): JSX.Element => {
   const location = useLocation();
   return (
     <>
-      <nav className='flex flex-row gap-3'>
+      <nav className='flex flex-row gap-2'>
         {links.map(({ to, label }, i): JSX.Element => {
           return (
             <Link

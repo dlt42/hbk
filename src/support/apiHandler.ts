@@ -28,7 +28,16 @@ const constructApiURL = ({
     const params = new URLSearchParams();
     const pairs = Object.entries(paramMap);
     pairs.forEach(([key, value]) => {
-      params.append(key, typeof value === 'number' ? value.toString() : value);
+      if (value === undefined) {
+        return;
+      }
+      if (typeof value === 'number') {
+        params.append(key, value.toString());
+      } else if (typeof value === 'string') {
+        params.append(key, value);
+      } else {
+        params.append(key, value.join(','));
+      }
     });
     url.search = params.toString();
   }
