@@ -14,6 +14,7 @@ const BreedFilter: FC<BreedFilterProps> = ({ value, setFilter }) => {
 
   return (
     <select
+      id='select-breed'
       className='rounded-[.2rem] border-[.1rem] border-solid border-slate-800 pb-[0.075rem] pt-[0.075rem]'
       value={value}
       onChange={(e) => {

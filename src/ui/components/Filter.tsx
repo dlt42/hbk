@@ -14,6 +14,7 @@ const Filter: FC<FilterProps> = ({ onTermChange, placeholder }) => {
 
   return (
     <input
+      id='filter-breeds'
       className='rounded-[.2rem] border-[.1rem] border-solid border-slate-800 pl-[.3rem]'
       placeholder={placeholder}
       type='text'
