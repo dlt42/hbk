@@ -6,14 +6,6 @@
 
 The application has been developed using React, Typescript and Tailwind, and it is built and deployed using Vite.
 
-### Error Boundary
-
-The application is wrapped in an error boundary that is used to catch any errors within the application. It provides a button to clear the error which triggers a re-render of the application. 
-
-### Data Provider
-
-The application is wrapped in a data provider that loads the breed data and makes it available via the DataContext. The breed data is used by the Breeds page and the Breed filter on the Cats page.
-
 ### Routes and Pages
 
 The application uses a BrowserRouter for handling navigation. The url and labels for navigation are stored in a NavContext. The link data stored in the NavContext is used by the Nav component for rendering the header links. The NavContext could also be used by a menu system.
@@ -46,12 +38,20 @@ The Breeds Page is constructed using the following hierarchy of components:
                     DetailsBlock
                     LinksBlock
 ```
-      
+
+### Error Boundary
+
+The application is wrapped in an error boundary that is used to catch any errors within the application. It provides a button to clear the error which triggers a re-render of the application. 
+
+### Data Provider
+
+The application is wrapped in a data provider that loads the breed data and makes it available via the DataContext. The breed data is used by the Breeds page and the Breed filter on the Cats page.
+
 ## API and validation
 
 ### API Request
 
-The application uses an environment file to store the API key and API paths
+The application uses an environment file to store the API key and API paths for the Cat API (https://thecatapi.com/)
 
 The application makes use of two API paths 
 
