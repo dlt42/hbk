@@ -8,25 +8,21 @@ type BreedDetailsProps = {
   breed: Breed;
 };
 
-const BreedDetails: FC<BreedDetailsProps> = ({ breed }): JSX.Element => {
+const BreedDetails: FC<BreedDetailsProps> = ({ breed }) => {
   const keys = Object.keys(breed);
 
   const detailsContent = keys.reduce(
     (result: DetailsContent, key: string) => {
       const displayData = getDisplayData(breed, key as keyof Breed);
-      if (!displayData) {
-        return result;
-      }
+      if (!displayData) return result;
+
       const { resultLabel, resultValue, resultTarget } = displayData;
       if (resultTarget !== null && resultValue !== null) {
-        if (typeof resultValue === 'number' && resultTarget === 'stats') {
-          const target = result[resultTarget];
-          target.push([resultLabel, resultValue]);
-        }
-        if (typeof resultValue === 'string' && resultTarget !== 'stats') {
-          const target = result[resultTarget];
-          target.push([resultLabel, resultValue]);
-        }
+        if (typeof resultValue === 'number' && resultTarget === 'stats')
+          result[resultTarget].push([resultLabel, resultValue]);
+
+        if (typeof resultValue === 'string' && resultTarget !== 'stats')
+          result[resultTarget].push([resultLabel, resultValue]);
       }
       return result;
     },

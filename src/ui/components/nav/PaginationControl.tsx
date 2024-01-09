@@ -13,20 +13,18 @@ type PaginationButtonSVGProps = {
   path: string;
 };
 
-const PaginationButtonSVG: FC<PaginationButtonSVGProps> = ({ path }) => {
-  return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      fill='none'
-      viewBox='0 0 24 24'
-      strokeWidth='1.5'
-      stroke='currentColor'
-      className='h-4 w-4'
-    >
-      <path strokeLinecap='round' strokeLinejoin='round' d={path} />
-    </svg>
-  );
-};
+const PaginationButtonSVG: FC<PaginationButtonSVGProps> = ({ path }) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    fill='none'
+    viewBox='0 0 24 24'
+    strokeWidth='1.5'
+    stroke='currentColor'
+    className='h-4 w-4'
+  >
+    <path strokeLinecap='round' strokeLinejoin='round' d={path} />
+  </svg>
+);
 
 // Button SVG paths from https://heroicons.com/
 
@@ -35,7 +33,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   page,
   total,
   setPage,
-}): JSX.Element => {
+}) => {
   const startIndex = page * limit + 1;
   const possibleEndIndex = page * limit + limit;
   const endIndex = possibleEndIndex > total ? total : possibleEndIndex;
@@ -43,6 +41,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   const startPage = page - 3 < 0 ? 0 : page - 3;
   const endPage = startPage + 7 > totalPages ? totalPages : startPage + 7;
   const pageNumbers = [];
+
   for (let i = startPage; i < endPage; i++) pageNumbers.push(i);
 
   return (
@@ -70,7 +69,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         >
           <PaginationButtonSVG path='M15.75 19.5 8.25 12l7.5-7.5' />
         </PaginationButton>
-        <span className=' text-center text-[.8rem] '>
+        <span className='text-center text-[.8rem] '>
           {startIndex} to {endIndex} of {total}
         </span>
         <PaginationButton
@@ -94,7 +93,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
           <PaginationButtonSVG path='m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5' />
         </PaginationButton>
       </ul>
-      <ul className=' hidden flex-row justify-center gap-2 sm:flex'>
+      <ul className='hidden flex-row justify-center gap-2 sm:flex'>
         {pageNumbers.map((pageNumber, index) => (
           <PaginationButton
             key={`page-${index}`}

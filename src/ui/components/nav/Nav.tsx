@@ -4,13 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 
 import NavContext from '../../context/navLinkContext';
 
-const Nav: FC = (): JSX.Element => {
+const Nav: FC = () => {
   const links = useContext(NavContext);
   const location = useLocation();
+
   return (
     <>
       <nav className='flex flex-row gap-2'>
-        {links.map(({ to, label }, i): JSX.Element => {
+        {links.map(({ to, label }, i) => {
           return (
             <Link
               key={`${i}_${to}`}

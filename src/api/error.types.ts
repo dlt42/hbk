@@ -15,6 +15,4 @@ type ValidationError = ApiErrorBase & {
   response: ResponseData<ResponseDataType>;
 };
 
-type ApiErrorResponse = RequestError | ValidationError;
-
-export type { ApiErrorResponse };
+export type ApiError = RequestError | ValidationError;

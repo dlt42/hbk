@@ -9,10 +9,7 @@ type BreedFilterProps = {
   setFilter: (breed_id: string) => void;
 };
 
-const BreedFilter: FC<BreedFilterProps> = ({
-  value,
-  setFilter,
-}): JSX.Element => {
+const BreedFilter: FC<BreedFilterProps> = ({ value, setFilter }) => {
   const data = useData();
 
   return (

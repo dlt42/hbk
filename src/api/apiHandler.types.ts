@@ -1,24 +1,26 @@
 import { Result } from 'true-myth';
 import { Schema } from 'zod';
 
-import { ApiErrorResponse } from './error.types';
+import { ApiError } from './error.types';
 
-type URLDetails = {
+export type URLDetails = {
   baseURL: string;
   path: string;
   paramMap?: Record<string, string | number | string[] | undefined>;
   id?: string;
 };
 
-type ResponseDataType = Record<string, object> | Array<unknown>;
+export type ResponseDataType = Record<string, object> | Array<unknown>;
 
-type PayloadDataType = Record<string, unknown>;
+export type PayloadDataType = Record<string, unknown>;
 
-type ResponseData<T extends ResponseDataType> = T;
+export type ResponseData<T extends ResponseDataType> = T;
 
-type ResponseSchema<T extends ResponseDataType> = Schema<ResponseData<T>>;
+export type ResponseSchema<T extends ResponseDataType> = Schema<
+  ResponseData<T>
+>;
 
-type ApiRequest<
+export type ApiRequest<
   T extends ResponseDataType,
   P extends PayloadDataType | void,
   H,
@@ -39,23 +41,12 @@ type ApiRequest<
       schema: ResponseSchema<T>;
     });
 
-type ApiSuccessResponse<T extends ResponseDataType, H> = {
+export type ApiSuccess<T extends ResponseDataType, H> = {
   data: ResponseData<T>;
   headers: Partial<H>;
 };
 
-type ApiResponse<T extends ResponseDataType, H> = Result<
-  ApiSuccessResponse<T, H>,
-  ApiErrorResponse
+export type ApiResponse<T extends ResponseDataType, H> = Result<
+  ApiSuccess<T, H>,
+  ApiError
 >;
-
-export type {
-  ApiRequest,
-  ApiResponse,
-  ApiSuccessResponse,
-  PayloadDataType,
-  ResponseData,
-  ResponseDataType,
-  ResponseSchema,
-  URLDetails,
-};

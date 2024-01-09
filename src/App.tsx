@@ -14,11 +14,13 @@ export const App = () => {
     { to: '/', label: 'Cats' },
     { to: '/Breeds', label: 'Breeds' },
   ];
+
   const navRoutes: NavRoute[] = [
     { path: '/', element: <CatsPage /> },
     { path: '/Breeds', element: <BreedsPage /> },
     { path: '*', element: <NotFoundPage /> },
   ];
+
   return (
     <ErrorBoundary currentError={null}>
       <DataProvider>

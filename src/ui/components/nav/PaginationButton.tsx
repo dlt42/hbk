@@ -18,8 +18,9 @@ const PaginationButton: FC<PaginationButtonProps> = ({
   setPage,
   rel,
   type,
-}): JSX.Element => {
+}) => {
   const enabled = page >= 0 && page < total && current !== page;
+
   return (
     <li
       className={` ${

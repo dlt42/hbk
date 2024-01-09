@@ -1,14 +1,14 @@
 import React, { FC, useCallback, useEffect, useState } from 'react';
 
-import { CatSearchParams, getCats } from '../../domain/cats';
-import { Cats } from '../../domain/cats.types';
+import { getCats } from '../../domain/cats';
+import { Cats, CatSearchParams } from '../../domain/cats.types';
 import BreedFilter, { ALL_BREEDS } from '../components/cats/BreedFilter';
 import CatList from '../components/cats/CatList';
 import Header from '../components/Header';
 import PaginationControls from '../components/nav/PaginationControl';
 import { useThrowAsyncError } from '../hooks/useThrowAsyncError';
 
-const CatsPage: FC = (): JSX.Element => {
+const CatsPage: FC = () => {
   const throwError = useThrowAsyncError();
   const [total, setTotal] = useState(0);
   const [catSearchParams, setCatSearchParams] = useState<CatSearchParams>({

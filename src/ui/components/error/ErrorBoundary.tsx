@@ -27,13 +27,14 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     this.setState({ error });
   }
 
-  public render(): JSX.Element {
+  public render() {
     const { children } = this.props;
     const { error } = this.state;
     const { className } = this.props;
     const clear = () => {
       this.setState({ error: null });
     };
+
     return error ? (
       <div
         className={

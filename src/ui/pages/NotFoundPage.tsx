@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import Header from '../components/Header';
 
-const NotFoundPage: FC = (): JSX.Element => (
+const NotFoundPage: FC = () => (
   <>
     <header>
       <Header title='Not Found' />

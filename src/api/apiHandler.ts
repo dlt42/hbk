@@ -3,7 +3,7 @@ import { Result } from 'true-myth';
 import {
   ApiRequest,
   ApiResponse,
-  ApiSuccessResponse,
+  ApiSuccess,
   PayloadDataType,
   ResponseData,
   ResponseDataType,
@@ -11,7 +11,7 @@ import {
   URLDetails,
 } from './apiHandler.types';
 import { convertZodError, processApiRequestError } from './error';
-import { ApiErrorResponse } from './error.types';
+import { ApiError } from './error.types';
 
 const constructApiURL = ({
   baseURL,
@@ -24,6 +24,7 @@ const constructApiURL = ({
   if (id) {
     url.pathname += `/${id}`;
   }
+
   if (paramMap) {
     const params = new URLSearchParams();
     const pairs = Object.entries(paramMap);
@@ -31,6 +32,7 @@ const constructApiURL = ({
       if (value === undefined) {
         return;
       }
+
       if (typeof value === 'number') {
         params.append(key, value.toString());
       } else if (typeof value === 'string') {
@@ -39,8 +41,10 @@ const constructApiURL = ({
         params.append(key, value.join(','));
       }
     });
+
     url.search = params.toString();
   }
+
   return url.toString();
 };
 
@@ -49,8 +53,9 @@ const validateResponse = <T extends ResponseDataType, H>(
   response: ResponseData<T>,
   urlDetails: URLDetails,
   responseHeadersData: H
-): Result<ApiSuccessResponse<T, H>, ApiErrorResponse> => {
+): Result<ApiSuccess<T, H>, ApiError> => {
   const parseResult = schema.safeParse(response);
+
   return parseResult.success
     ? Result.ok({
         data: parseResult.data,
@@ -70,6 +75,7 @@ const getResponseHeadersData = <H>(
   requiredHeaders: (keyof H)[] | undefined
 ): Partial<H> => {
   const responseHeadersData: Partial<H> = {};
+
   if (requiredHeaders && responseHeadersData) {
     requiredHeaders.forEach(
       (requiredHeader) =>
@@ -78,6 +84,7 @@ const getResponseHeadersData = <H>(
         ))
     );
   }
+
   return responseHeadersData;
 };
 
@@ -123,6 +130,7 @@ const callApi = async <
         const data = await response.json();
         return validateResponse(schema, data, urlDetails, responseHeadersData);
       }
+
       case 'payload': {
         const { payload } = params;
         const response = await fetch(

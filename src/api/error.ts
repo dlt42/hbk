@@ -20,13 +20,12 @@ const convertZodError = (error: ZodError) =>
 const processApiRequestError = <T extends ResponseDataType, H>(
   error: unknown,
   urlDetails: URLDetails
-): ApiResponse<T, H> => {
-  return Result.err({
+): ApiResponse<T, H> =>
+  Result.err({
     type: 'REQUEST',
     error: getErrorMessage(error),
     causes: [],
     urlDetails,
   });
-};
 
 export { convertZodError, processApiRequestError };

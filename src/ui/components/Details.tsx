@@ -22,7 +22,7 @@ type LinkBlockProps = {
   links: [string, string][];
 };
 
-const DetailsBlock: FC<DetailsBlockProps> = ({ details, id }): JSX.Element => (
+const DetailsBlock: FC<DetailsBlockProps> = ({ details, id }) => (
   <>
     {details.map((current, index) => (
       <React.Fragment key={`${id}-${index}-1`}>
@@ -37,7 +37,7 @@ const DetailsBlock: FC<DetailsBlockProps> = ({ details, id }): JSX.Element => (
   </>
 );
 
-const LinksBlock: FC<LinkBlockProps> = ({ links }): JSX.Element => (
+const LinksBlock: FC<LinkBlockProps> = ({ links }) => (
   <>
     {links.map((current, index) => (
       <a
@@ -53,7 +53,7 @@ const LinksBlock: FC<LinkBlockProps> = ({ links }): JSX.Element => (
   </>
 );
 
-const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
+const Details: FC<DetailsProps> = ({ label, content, id }) => (
   <details className='w-full'>
     <summary className='cursor-pointer text-center text-sm font-bold '>
       {label}
@@ -69,7 +69,7 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
         </div>
       </section>
       <div className='flex w-full flex-wrap gap-2'>
-        <section className=' flex-auto'>
+        <section className='flex-auto'>
           <h4 className='border-b border-solid border-b-black text-center text-sm font-bold'>
             Stats
           </h4>
@@ -77,7 +77,7 @@ const Details: FC<DetailsProps> = ({ label, content, id }): JSX.Element => (
             <DetailsBlock details={content.stats} id={id} />
           </div>
         </section>
-        <section className=' flex-auto'>
+        <section className='flex-auto'>
           <h4 className='border-b border-solid  border-b-black text-center text-sm font-bold'>
             Attributes
           </h4>

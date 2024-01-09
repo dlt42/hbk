@@ -2,7 +2,12 @@ import { DetailsContent } from 'ui/components/Details';
 
 import { callApi } from '../api/apiHandler';
 import { getConfig } from '../support/config';
-import { Breed, Breeds, breedsSchema } from './breeds.types';
+import {
+  Breed,
+  Breeds,
+  breedsSchema,
+  GetDisplayDataResponse,
+} from './breeds.types';
 
 const config = getConfig();
 
@@ -23,14 +28,9 @@ export const getBreeds = async () => {
       paramMap: {},
     },
   });
+
   return result;
 };
-
-type GetDisplayDataResponse = {
-  resultLabel: string;
-  resultValue: string | number | null;
-  resultTarget: keyof DetailsContent | null;
-} | null;
 
 export const getDisplayData = (
   breed: Breed,
@@ -67,6 +67,7 @@ export const getDisplayData = (
       .trim();
     resultTarget = 'info';
   }
+
   return {
     resultLabel,
     resultValue,

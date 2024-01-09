@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import { DetailsContent } from '../ui/components/Details';
+
 const bool = z.coerce.boolean();
 
 export const breedSchema = z.object({
@@ -57,3 +59,9 @@ export const breedsSchema = z.array(breedSchema);
 export type Breed = z.infer<typeof breedSchema>;
 
 export type Breeds = z.infer<typeof breedsSchema>;
+
+export type GetDisplayDataResponse = {
+  resultLabel: string;
+  resultValue: string | number | null;
+  resultTarget: keyof DetailsContent | null;
+} | null;

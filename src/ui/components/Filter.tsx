@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
-const Filter = ({
-  onTermChange,
-  placeholder,
-}: {
+type FilterProps = {
   placeholder: string;
   onTermChange: (value: string) => void;
-}) => {
+};
+
+const Filter: FC<FilterProps> = ({ onTermChange, placeholder }) => {
   const [term, setTerm] = useState('');
 
   useEffect(() => {
     onTermChange(term);
   }, [term, onTermChange]);
+
   return (
     <input
       className='rounded-[.2rem] border-[.1rem] border-solid border-slate-800 pl-[.3rem]'

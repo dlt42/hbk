@@ -25,3 +25,17 @@ export const catsSchema = z.array(catSchema);
 export type Cat = z.infer<typeof catSchema>;
 
 export type Cats = z.infer<typeof catsSchema>;
+
+export type CatSearchParams = {
+  limit: number;
+  page: number;
+  size: 'thumb' | 'small' | 'med' | 'full';
+  order: 'ASC' | 'DESC';
+  breed_ids: string[] | undefined;
+};
+
+export type PaginationResponseHeaders = {
+  'Pagination-Count': number;
+  'Pagination-Limit': number;
+  'Pagination-Page': number;
+};

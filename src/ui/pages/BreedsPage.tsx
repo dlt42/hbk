@@ -7,9 +7,10 @@ import Filter from '../components/Filter';
 import Header from '../components/Header';
 import { useData } from '../context/dataContext';
 
-const BreedsPage: FC = (): JSX.Element => {
+const BreedsPage: FC = () => {
   const data = useData();
   const [breeds, setBreeds] = useState(data.breeds);
+
   const onTermChange = useCallback(
     (term: string) => {
       const filtered = data.breeds.filter((breed) => {
@@ -29,12 +30,10 @@ const BreedsPage: FC = (): JSX.Element => {
           const lowerTerm = term.toLowerCase();
           const lowerLabel = resultLabel.toLowerCase();
           const lowerValue = resultValue.toString().toLowerCase();
-
-          if (lowerLabel === 'weight') {
-            console.log(lowerValue); //7 - 10
-          }
-
           const queryStart = `${lowerLabel}: `;
+
+          // Check if the filter term starts with the current label followed by a colon
+          // and if so that the current value contains the remainder of the filter term
           const matchesQuery =
             lowerTerm.startsWith(queryStart) &&
             lowerValue.indexOf(lowerTerm.substring(queryStart.length)) > -1;
@@ -47,6 +46,7 @@ const BreedsPage: FC = (): JSX.Element => {
     },
     [data]
   );
+
   return (
     <>
       <Header title='Breeds'>

@@ -21,6 +21,3 @@ body {
   @apply inline;
 }
 
-.breed-image {
-  object-view-box: inset(0.5rem);
-}
