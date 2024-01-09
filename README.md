@@ -8,7 +8,7 @@ The application has been developed using React, Typescript and Tailwind, and it 
 
 ### Error Boundary
 
-The application is wrapped in an error boundary that is used to catch any errors within the application. It provides a button to clear the error which triggers a re-render of the application. This button would be removed in production and replaced with an appropriate mechanism for error handling - perhaps a form to report an error, forced log out or a redirect to a support site.
+The application is wrapped in an error boundary that is used to catch any errors within the application. It provides a button to clear the error which triggers a re-render of the application. 
 
 ### Data Provider
 
@@ -98,6 +98,13 @@ The images can also be filtered by a specific breed.
 
 Errors in asynchronous processes are not automatically trapped by the error boundary so a useThrowAsyncError hook is used to throw such errors to the error boundary.
 
+## To do
+
+Outstanding items:
+
+1. Add automated tests - unit and end-to-end
+2. Change Cats page to ignore data is returned after a subsequent request is made (i.e. repeated click of a button in the pagination control)
+3. Remove button on error boundary and replace with a more appropriate mechanism for error handling - perhaps a form to report an error, forced log out or a redirect to a support site.
 
 ## Possible Functional Enhancements
 
