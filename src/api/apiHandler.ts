@@ -103,11 +103,10 @@ const callApi = async <
     requiredResponseHeaders,
   } = params;
   try {
-    const headers = new Headers(
-      {
-        'Content-Type': 'application/json',
-      } && requestHeaders
-    );
+    const headers = {
+      'Content-Type': 'application/json',
+      ...requestHeaders,
+    };
 
     const redirect: RequestRedirect = 'follow';
 
@@ -121,22 +120,36 @@ const callApi = async <
 
     switch (superType) {
       case 'nopayload': {
-        const { schema } = params;
         const response = await fetch(url, requestOptions);
         const responseHeadersData = getResponseHeadersData(
           response,
           requiredResponseHeaders
         );
         const data = await response.json();
-        return validateResponse(schema, data, urlDetails, responseHeadersData);
+
+        const { type } = params;
+        if (type === 'get') {
+          const { schema } = params;
+          return validateResponse(
+            schema,
+            data,
+            urlDetails,
+            responseHeadersData
+          );
+        } else {
+          return Result.ok({
+            data,
+            headers: responseHeadersData,
+          });
+        }
       }
 
       case 'payload': {
         const { payload } = params;
-        const response = await fetch(
-          url,
-          requestOptions && { body: JSON.stringify(payload) }
-        );
+        const response = await fetch(url, {
+          ...requestOptions,
+          body: JSON.stringify(payload),
+        });
         const responseHeadersData = getResponseHeadersData(
           response,
           requiredResponseHeaders

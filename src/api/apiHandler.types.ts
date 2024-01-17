@@ -10,7 +10,9 @@ export type URLDetails = {
   id?: string;
 };
 
-export type ResponseDataType = Record<string, object> | Array<unknown>;
+export type ResponseDataType =
+  | Record<string, string | number | object | null>
+  | Array<unknown>;
 
 export type PayloadDataType = Record<string, unknown>;
 
@@ -33,13 +35,18 @@ export type ApiRequest<
       superType: 'payload';
       type: 'patch' | 'put' | 'post';
       payload: P;
-      schema: undefined;
-    }
-  : {
-      superType: 'nopayload';
-      type: 'delete' | 'get';
       schema: ResponseSchema<T>;
-    });
+    }
+  :
+      | {
+          superType: 'nopayload';
+          type: 'get';
+          schema: ResponseSchema<T>;
+        }
+      | {
+          superType: 'nopayload';
+          type: 'delete';
+        });
 
 export type ApiSuccess<T extends ResponseDataType, H> = {
   data: ResponseData<T>;
